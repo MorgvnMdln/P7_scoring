@@ -4,6 +4,7 @@ dill==0.3.6
 flask==2.1.2
 gunicorn>=20.0,<21.0
 imbalanced-learn==0.10.1
+imblearn==0.0
 itsdangerous==2.1.2
 jinja2==3.1.2
 joblib==1.1.0
