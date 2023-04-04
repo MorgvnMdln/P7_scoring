@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from werkzeug.wrappers import Request, Response
-from .prediction_model import PredictionModel
+from prediction_model import PredictionModel
 import base64
 
 pred_model = PredictionModel()
