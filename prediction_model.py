@@ -1,3 +1,4 @@
+import os
 import joblib
 import pandas as pd
 import pickle
@@ -23,11 +24,13 @@ from scipy import sparse
 import re
 import numpy as np
 
+model_dir = 'model'
+
 class PredictionModel:
-    MODEL_PATH = './model/model_global.pkl'
-    LIME_PATH = './model/lime_global.pkl'
-    LOCAL_FEAT_IMPORTANCE_PATH = './model/feature_importance_locale.txt'
-    TEST_DATA_PATH = './model/donnees_test.pkl'
+    MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
+    LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
+    LOCAL_FEAT_IMPORTANCE_PATH = os.path.join(model_dir, 'feature_importance_locale.txt')
+    TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
     local_feat_importance = None
     test_data = None
 
@@ -35,6 +38,7 @@ class PredictionModel:
         self._model = self.import_predict_model()  # load lgbm
         self.explainer = self.import_lime_model()  # laod explainer
         self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
+        # self.test_data = pd.joblib.load(self.TEST_DATA_PATH)  # load dataframe donnees test
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
 

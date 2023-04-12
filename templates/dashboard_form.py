@@ -8,6 +8,7 @@ import json
 import argparse
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
+import os
 import seaborn as sns
 import csv
 import io, base64
@@ -32,6 +33,10 @@ st.title("Formulaire Credit Scoring")
 
 # Documentation >> st.help(st.form)
 
+urlPath = 'http://credit-scoring-app-mdln.herokuapp.com/api/'
+# 'http://127.0.0.1:5000/api/'
+
+
 tab1, tab2 = st.tabs(["Client Information", "Global Performance"])
 with tab1:  # ID client + resultats après réponse de l'API
     # Creating our form fields
@@ -45,8 +50,8 @@ with tab1:  # ID client + resultats après réponse de l'API
         # If submit button is pressed
         if submit:
             # app.py
-            URL = "https://credit-scoring-app-mdln.herokuapp.com/api/predict"
-            # URL = "http://127.0.0.1:5000/api/predict"
+            # URL = "https://credit-scoring-app-mdln.herokuapp.com/api/predict"
+            URL = os.path.join(urlPath, "predict")
 
             # defining a params dict for the parameters to be sent to the API
             PARAMS = {
@@ -100,8 +105,8 @@ with tab1:  # ID client + resultats après réponse de l'API
                     # st.pyplot(fig)
 
     with tab2: #onglet performance du model
-        URL = "http://credit-scoring-app-mdln.herokuapp.com/api/model_performance"
-        # URL = "http://127.0.0.1:5000/api/model_performance"
+        # URL = "http://credit-scoring-app-mdln.herokuapp.com/api/model_performance"
+        URL = os.path.join(urlPath, "model_performance")
         # defining a params dict for the parameters to be sent to the API
 
         st.header("Global Performance")
