@@ -27,7 +27,12 @@ import numpy as np
 
 model_dir = 'model'
 
-
+def load_pickle(path): 
+    result = None
+    pickle_in = open(path, "rb")
+    pickle.load(result, pickle_in)
+    pickle_in.close()
+    return result
 
 class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
@@ -43,7 +48,7 @@ class PredictionModel:
         self.explainer = self.import_lime_model()  # laod explainer
         # self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
         # load dataframe donnees test
-        self.test_data = jl.load(self.TEST_DATA_PATH)
+        self.test_data = load_pickle(self.TEST_DATA_PATH)
           
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
@@ -105,11 +110,10 @@ class PredictionModel:
         return info_perf
     
     def import_predict_model(self):
-        model = jl.load(self.MODEL_PATH)
-        return model
+        return  load_pickle(self.MODEL_PATH)
 
     def import_lime_model(self):
-        return jl.load(self.LIME_PATH)
+        return load_pickle(self.LIME_PATH)
 
 if __name__ =='__main__':
     test = PredictionModel()
