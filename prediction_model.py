@@ -26,6 +26,8 @@ import numpy as np
 
 model_dir = 'model'
 
+
+
 class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
     LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
@@ -34,11 +36,14 @@ class PredictionModel:
     local_feat_importance = None
     test_data = None
 
+
     def __init__(self) -> None:
         self._model = self.import_predict_model()  # load lgbm
         self.explainer = self.import_lime_model()  # laod explainer
-        self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
-        # self.test_data = pd.joblib.load(self.TEST_DATA_PATH)  # load dataframe donnees test
+        # self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
+        # load dataframe donnees test
+        self.test_data = joblib.load(self.TEST_DATA_PATH)
+          
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
 
@@ -103,9 +108,7 @@ class PredictionModel:
         return model
 
     def import_lime_model(self):
-        with open(self.LIME_PATH, 'rb') as file:
-            explainer = pickle.load(file)
-        return explainer
+        return joblib.load(self.LIME_PATH)
 
 if __name__ =='__main__':
     test = PredictionModel()
