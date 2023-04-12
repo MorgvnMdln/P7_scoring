@@ -6,9 +6,8 @@ import string
 import sklearn
 import scipy
 import lime
-from sklearn.externals import joblib as jl
 from pickle import load
-import dill as pickle
+import dill
 
 # ----------------------------------------------------
 from sklearn.preprocessing import LabelEncoder
@@ -30,7 +29,7 @@ model_dir = 'model'
 def load_pickle(path): 
     result = None
     pickle_in = open(path, "rb")
-    pickle.load(result, pickle_in)
+    load(result, pickle_in)
     pickle_in.close()
     return result
 
