@@ -6,6 +6,7 @@ import string
 import sklearn
 import scipy
 import lime
+from sklearn.externals import joblib as jl
 from pickle import load
 import dill as pickle
 
@@ -42,7 +43,7 @@ class PredictionModel:
         self.explainer = self.import_lime_model()  # laod explainer
         # self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
         # load dataframe donnees test
-        self.test_data = joblib.load(self.TEST_DATA_PATH)
+        self.test_data = jl.load(self.TEST_DATA_PATH)
           
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
@@ -104,11 +105,11 @@ class PredictionModel:
         return info_perf
     
     def import_predict_model(self):
-        model = joblib.load(self.MODEL_PATH)
+        model = jl.load(self.MODEL_PATH)
         return model
 
     def import_lime_model(self):
-        return joblib.load(self.LIME_PATH)
+        return jl.load(self.LIME_PATH)
 
 if __name__ =='__main__':
     test = PredictionModel()
