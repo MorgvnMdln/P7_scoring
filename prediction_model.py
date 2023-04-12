@@ -29,9 +29,9 @@ model_dir = 'model'
 def load_pickle(path): 
     result = None
     pickle_in = open(path, "rb")
-    load(result, pickle_in)
+    result = load(pickle_in)
     pickle_in.close()
-    return result
+    return result 
 
 class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
