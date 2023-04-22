@@ -37,7 +37,8 @@ class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
     LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
     LOCAL_FEAT_IMPORTANCE_PATH = os.path.join(model_dir, 'feature_importance_locale.txt')
-    TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
+    TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.json')
+    # TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
     local_feat_importance = None
     test_data = None
 
@@ -47,7 +48,8 @@ class PredictionModel:
         self.explainer = self.import_lime_model()  # laod explainer
         # self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
         # load dataframe donnees test
-        self.test_data = load_pickle(self.TEST_DATA_PATH)
+        # self.test_data = load_pickle(self.TEST_DATA_PATH)
+        self.test_data = pd.read_json(self.TEST_DATA_PATH)
           
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
@@ -59,6 +61,7 @@ class PredictionModel:
         # return self.test_data.loc[self.test_data['SK_ID_CURR'] == int(client_Id)].to_numpy()
         # return self.test_data.loc[self.test_data['SK_ID_CURR'] == int(client_Id)].drop(columns=['SK_ID_CURR']).to_numpy()
         # return self.test_data.loc[self.test_data['SK_ID_CURR'] == float(client_Id)].to_numpy()
+
 
 
     def predict(self, client_Id):
