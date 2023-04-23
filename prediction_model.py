@@ -8,6 +8,7 @@ import scipy
 import lime
 from pickle import load
 import dill
+import gdown
 
 # ----------------------------------------------------
 from sklearn.preprocessing import LabelEncoder
@@ -33,11 +34,18 @@ def load_pickle(path):
     pickle_in.close()
     return result 
 
+def load_from_google_cloud(id, output):
+    # url = "https://drive.google.com/uc?id=1l_5RK28JRL19wpT22B-DY9We3TVXnnQQ"
+    # id = "1ABIbSgQrQWn07UkJoDcEsl9vT1rbz2lk" 
+    # ID tiré du lien de partage du fichier dans google cloud avec un accès général donné à tous les utilisateurs
+    gdown.download(id=id, output=output, quiet=False)
+
+
 class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
     LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
     LOCAL_FEAT_IMPORTANCE_PATH = os.path.join(model_dir, 'feature_importance_locale.txt')
-    TEST_DATA_PATH =  'donnees_test.json' #os.path.join(model_dir,)
+    TEST_DATA_PATH = 'donnees_test.json' #os.path.join(model_dir,)
     # TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
     local_feat_importance = None
     test_data = None
@@ -49,8 +57,10 @@ class PredictionModel:
         # self.test_data = pd.read_pickle(self.TEST_DATA_PATH)  # load dataframe donnees test
         # load dataframe donnees test
         # self.test_data = load_pickle(self.TEST_DATA_PATH)
+        if not os.path.exists(self.TEST_DATA_PATH):
+            load_from_google_cloud('1ABIbSgQrQWn07UkJoDcEsl9vT1rbz2lk', self.TEST_DATA_PATH)
         self.test_data = pd.read_json(self.TEST_DATA_PATH)
-          
+        
         # self.load_feat_importance_local()  # self.local_feat_importance = self.load_feat_importance_local()
         pass
 
