@@ -6,8 +6,8 @@ import base64
 
 pred_model = PredictionModel()
 app = Flask(__name__)
-
 @app.route("/api/predict", methods=["GET"])
+
 
 def predict():
     args = request.args

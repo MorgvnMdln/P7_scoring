@@ -1,3 +1,1 @@
-model/donnees_test.pkl filter=lfs diff=lfs merge=lfs -text
-model/donnees_test.json filter=lfs diff=lfs merge=lfs -text
-donnees_test.json filter=lfs diff=lfs merge=lfs -text
+data/donnees_test.json filter=lfs diff=lfs merge=lfs -text
