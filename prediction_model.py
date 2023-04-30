@@ -77,7 +77,7 @@ class PredictionModel:
         # self.test_data = load_pickle(self.TEST_DATA_PATH)
         # if not os.path.exists(self.TEST_DATA_PATH):
         # load_from_google_cloud('1ABIbSgQrQWn07UkJoDcEsl9vT1rbz2lk', self.TEST_DATA_PATH)
-        list_dir(CURRENT_DIRECTORY)
+        list_dir()  # CURRENT_DIRECTORY
         print(CURRENT_DIRECTORY)
         print(TEST_DATA_PATH)
         self.test_data = pd.read_json(self.TEST_DATA_PATH)
