@@ -29,7 +29,7 @@ import sys
 from pathlib import Path
 
 
-data_dir = 'data'
+data_dir = '/app'
 model_dir = 'model'
 CURRENT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 # os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -63,7 +63,7 @@ class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
     LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
     LOCAL_FEAT_IMPORTANCE_PATH = os.path.join(model_dir, 'feature_importance_locale.txt')
-    TEST_DATA_PATH = os.path.join(CURRENT_DIRECTORY, data_dir, 'donnees_test.json')  # '/app/donnees_test.json'
+    TEST_DATA_PATH = os.path.join(CURRENT_DIRECTORY, 'donnees_test.json') # '/app/donnees_test.json'
     # TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
     local_feat_importance = None
     test_data = None
