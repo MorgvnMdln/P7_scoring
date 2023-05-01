@@ -33,7 +33,7 @@ st.title("Formulaire Credit Scoring")
 
 # Documentation >> st.help(st.form)
 
-urlPath = 'http://127.0.0.1:5000/api/'
+urlPath = 'http://credit-scoring-app-mdln.herokuapp.com/api/'
 # 'http://credit-scoring-app-mdln.herokuapp.com/api/'
 # 'http://127.0.0.1:5000/api/'
 

@@ -30,6 +30,7 @@ def load_pickle(path):
 def predict():
     args = request.args
     client_Id = args['sk_id_curr']
+    print(client_Id)
     arr_results = []
     test_data = pd.read_json(TEST_DATA_PATH)
     features = test_data.loc[test_data['SK_ID_CURR'] == int(client_Id)]  # donnees du client retournees
