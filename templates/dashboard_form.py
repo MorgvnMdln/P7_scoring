@@ -72,6 +72,7 @@ with tab1:  # ID client + resultats après réponse de l'API
 
             # PieChart
             if submit:
+                try :
                     st.header("Client Information")
                     # Customer score visualization
                     st.write("**Synthèse des informations du client n°{}**".format(sk_id_curr))
@@ -104,6 +105,9 @@ with tab1:  # ID client + resultats après réponse de l'API
                     # st.bar_chart(feature_importance_globale, x=feature_importance_globale.columns())
                     # ax.hist(feature_importance_globale, bins=20)
                     # st.pyplot(fig)
+
+                except ValueError:
+                    st.error("Entrez un numéro de client valide")
 
     with tab2: #onglet performance du model
         # URL = "http://credit-scoring-app-mdln.herokuapp.com/api/model_performance"
