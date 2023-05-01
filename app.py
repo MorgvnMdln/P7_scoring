@@ -22,6 +22,7 @@ print('SITE_ROOT :', SITE_ROOT)
 json_url = os.path.join('/app', 'static', 'donnees_test.json')
 print('json_url :', json_url)
 test_data = pd.read_json(json_url)
+print('test_data :', test_data)
 
 def load_pickle(path): 
     result = None
