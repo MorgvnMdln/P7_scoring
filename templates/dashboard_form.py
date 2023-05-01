@@ -33,7 +33,7 @@ st.title("Formulaire Credit Scoring")
 
 # Documentation >> st.help(st.form)
 
-urlPath = 'http://credit-scoring-app-mdln.herokuapp.com/api/'
+urlPath = 'http://127.0.0.1:5000/api/'
 # 'http://credit-scoring-app-mdln.herokuapp.com/api/'
 # 'http://127.0.0.1:5000/api/'
 
@@ -109,7 +109,7 @@ with tab1:  # ID client + resultats après réponse de l'API
                 except ValueError:
                     st.error("Entrez un numéro de client valide")
 
-    with tab2: #onglet performance du model
+    with tab2: # onglet performance du model
         # URL = "http://credit-scoring-app-mdln.herokuapp.com/api/model_performance"
         URL = os.path.join(urlPath, "model_performance")
         # defining a params dict for the parameters to be sent to the API
