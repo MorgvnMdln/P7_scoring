@@ -14,7 +14,11 @@ app = Flask(__name__)
 MODEL_PATH = 'model_global.pkl'
 LIME_PATH = 'lime_global.pkl'
 LOCAL_FEAT_IMPORTANCE_PATH = 'feature_importance_locale.txt'
-TEST_DATA_PATH = 'donnees_test.json'
+# TEST_DATA_PATH = 'donnees_test.json'
+
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+json_url = os.path.join(SITE_ROOT, 'static', 'donnees_test.json')
+test_data = pd.read_json(json_url)
 
 def load_pickle(path): 
     result = None
@@ -32,9 +36,8 @@ def predict():
     client_Id = args['sk_id_curr']
     print(client_Id)
     arr_results = []
-    test_data = pd.read_json(TEST_DATA_PATH)
     features = test_data.loc[test_data['SK_ID_CURR'] == int(client_Id)]  # donnees du client retournees
-    features = features.loc[:, features.columns != 'SK_ID_CURR'].to_numpy() # !!! => ajout
+    features = features.loc[:, features.columns != 'SK_ID_CURR'].to_numpy()
     _model = load_pickle(MODEL_PATH)
     explainer = load_pickle(LIME_PATH)
 
