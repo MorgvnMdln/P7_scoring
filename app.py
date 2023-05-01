@@ -18,8 +18,9 @@ LOCAL_FEAT_IMPORTANCE_PATH = 'feature_importance_locale.txt'
 # TEST_DATA_PATH = 'donnees_test.json'
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-print(SITE_ROOT)
+print('SITE_ROOT :', SITE_ROOT)
 json_url = os.path.join('/app', 'static', 'donnees_test.json')
+print('json_url :', json_url)
 test_data = pd.read_json(json_url)
 
 def load_pickle(path): 
