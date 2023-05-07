@@ -71,7 +71,7 @@ class PredictionModel:
     MODEL_PATH = os.path.join(model_dir, 'model_global.pkl')
     LIME_PATH = os.path.join(model_dir, 'lime_global.pkl')
     LOCAL_FEAT_IMPORTANCE_PATH = os.path.join(model_dir, 'feature_importance_locale.txt')
-    TEST_DATA_PATH = os.path.join(CURRENT_DIRECTORY, 'donnees_test.json') # '/app/donnees_test.json'
+    TEST_DATA_PATH = os.path.join(CURRENT_DIRECTORY, 'small_donnees_test.json') # '/app/donnees_test.json'  # donnees_test
     # TEST_DATA_PATH = os.path.join(model_dir, 'donnees_test.pkl')
     local_feat_importance = None
     test_data = None
