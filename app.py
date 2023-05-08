@@ -16,10 +16,13 @@ MODEL_PATH = 'model_global.pkl'
 LIME_PATH = 'lime_global.pkl'
 LOCAL_FEAT_IMPORTANCE_PATH = 'feature_importance_locale.txt'
 # TEST_DATA_PATH = 'donnees_test.json'
+_model = load_pickle(MODEL_PATH)
+explainer = load_pickle(LIME_PATH)
+
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 print('SITE_ROOT :', SITE_ROOT)
-json_url = os.path.join('/app', 'static', 'small_donnees_test.json')  # donnees_test
+json_url = os.path.join('/app', 'small_donnees_test.json')  # donnees_test  # 'static'
 print('json_url :', json_url)
 test_data = pd.read_json(json_url)
 print('test_data :', test_data)
@@ -42,8 +45,7 @@ def predict():
     arr_results = []
     features = test_data.loc[test_data['SK_ID_CURR'] == int(client_Id)]  # donnees du client retournees
     features = features.loc[:, features.columns != 'SK_ID_CURR'].to_numpy()
-    _model = load_pickle(MODEL_PATH)
-    explainer = load_pickle(LIME_PATH)
+    
 
     # preparation input
     print('Loaded features shape: ', features.shape)
