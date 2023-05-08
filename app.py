@@ -16,6 +16,14 @@ MODEL_PATH = 'model_global.pkl'
 LIME_PATH = 'lime_global.pkl'
 LOCAL_FEAT_IMPORTANCE_PATH = 'feature_importance_locale.txt'
 # TEST_DATA_PATH = 'donnees_test.json'
+
+def load_pickle(path): 
+    result = None
+    pickle_in = open(path, "rb")
+    result = load(pickle_in)
+    pickle_in.close()
+    return result 
+
 _model = load_pickle(MODEL_PATH)
 explainer = load_pickle(LIME_PATH)
 
@@ -27,12 +35,7 @@ print('json_url :', json_url)
 test_data = pd.read_json(json_url)
 print('test_data :', test_data)
 
-def load_pickle(path): 
-    result = None
-    pickle_in = open(path, "rb")
-    result = load(pickle_in)
-    pickle_in.close()
-    return result 
+
 
 
 @app.route("/api/predict", methods=["GET"])
