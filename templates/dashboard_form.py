@@ -48,31 +48,31 @@ with tab1:  # ID client + resultats après réponse de l'API
 
         submit = st.form_submit_button(label="Envoyer")
 
-        # If submit button is pressed
-        if submit:
-            # app.py
-            # URL = "https://credit-scoring-app-mdln.herokuapp.com/api/predict"
-            URL = os.path.join(urlPath, "predict")
-
-            # defining a params dict for the parameters to be sent to the API
-            PARAMS = {
-                  "sk_id_curr": sk_id_curr
-                     }
-            # Compute the client score
-            # print(PARAMS)
-            # sending get request and saving the response as response object
-            r = requests.get(url=URL, params=PARAMS)
-            # extracting data in json format
-            response = r.json()
-            label = response['data']
-            #   print(response)
-            print(label)
-            label2 = (label['score_1'], label['score_2'])
-            print(label2)
-
-            # PieChart
+        try:
+            # If submit button is pressed
             if submit:
-                try :
+                # app.py
+                # URL = "https://credit-scoring-app-mdln.herokuapp.com/api/predict"
+                URL = os.path.join(urlPath, "predict")
+
+                # defining a params dict for the parameters to be sent to the API
+                PARAMS = {
+                      "sk_id_curr": sk_id_curr
+                         }
+                # Compute the client score
+                # print(PARAMS)
+                # sending get request and saving the response as response object
+                r = requests.get(url=URL, params=PARAMS)
+                # extracting data in json format
+                response = r.json()
+                label = response['data']
+                #   print(response)
+                print(label)
+                label2 = (label['score_1'], label['score_2'])
+                print(label2)
+
+                # PieChart
+                if submit:
                     st.header("Client Information")
                     # Customer score visualization
                     st.write("**Synthèse des informations du client n°{}**".format(sk_id_curr))
@@ -106,8 +106,8 @@ with tab1:  # ID client + resultats après réponse de l'API
                     # ax.hist(feature_importance_globale, bins=20)
                     # st.pyplot(fig)
 
-                except ValueError:
-                    st.error("Entrez un numéro de client valide")
+        except ValueError:
+            st.error("Entrez un numéro de client valide")
 
     with tab2: # onglet performance du model
         # URL = "http://credit-scoring-app-mdln.herokuapp.com/api/model_performance"
